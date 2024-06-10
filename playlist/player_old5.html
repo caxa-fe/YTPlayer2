@@ -1,0 +1,196 @@
+<!doctype html>
+<!-- Мосфильм "Покровские ворота - 2 серия" -->
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <style type="text/css">
+            body {
+                background-color: black;
+            }
+            #ytplayer {
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+
+            }
+            #btnHide {
+                position: absolute;
+                top: 0;
+                left: 0;
+                display: none;
+            }
+            #btnFullScreen {
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                display: none;
+            }
+            #opensvg {
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background-color: #333;
+                display: block;
+                visibility: visible;
+                opacity: 1;
+                transition-property: opacity;
+                transition-duration: 1s;
+            }
+
+            img {
+                display: block;
+                margin-left: auto;
+                margin-right: auto;
+                width: 100%;
+                height: 100%;
+            }
+            #banner, #wait {
+                position: absolute;
+                top: 25%;
+                width: 97%;
+                height: 20;
+                text-align: center;
+                background-color: rgba(0, 0, 0, .6);
+                display: block;
+                visibility: visible;
+                opacity: 0;
+            }
+            #banner p, #wait p {
+
+                color : white;
+                font: 1.2em "Segoe ui", sans-serif;
+            }
+            @keyframes fade-in-fade-out {          /* объявляем имя анимации: "go-left-right" */
+                from { opacity: 0; }
+                to   { opacity: 1; }
+            }
+
+            .fadeinout {
+                animation: fade-in-fade-out 1s 1 alternate;
+                /* применить анимацию "fade-in-fade-out"
+                   продолжительностью 1s секунды
+                   количество раз: 1/бесконечно (infinite)
+                   менять направление анимации каждый раз (alternate)
+                */
+            }
+
+        </style>
+    </head>
+    <body>
+            <!-- 1. The <iframe> (and video player) will replace this <div> tag. -->
+    <div id="ytplayer"></div>
+    <div id='opensvg'>
+            <img src = "../../imgs/pics/open.svg">
+            <!-- <img  src = "../pics/open.svg"> -->
+    </div>
+    <div id='banner'><p>Нажмите Play здесь</p></div>
+    <div id='wait'><p>.... Загрузка ....</p></div>
+<!-- Эти кнопки оставлены для отладки -->
+    <button id="btnHide"  onclick="getVolume()">Hide</button>
+    <button id="btnFullScreen" onclick="playFullscreen()">FullScreen</button>
+<!--  -->
+    <script src = "https://www.youtube.com/iframe_api"></script>
+    <script>
+
+          var tag = document.createElement('script');
+
+          tag.src = "https://www.youtube.com/iframe_api";
+          var firstScriptTag = document.getElementsByTagName('script')[0];
+          firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+          var player;
+          function onYouTubeIframeAPIReady() {
+            // Эту функцию вызывает API - IFrame Player API, документация:
+            // https://developers.google.com/youtube/iframe_api_reference?hl=ru%2F%3Fq%3Dloadvideobyid
+            // Мы ее отлючим, пусть побудет пустой
+            // Плеер мы включим по запросу с нужным видео
+            }
+
+        function ytPlayer(vidID) {  // Это наш плеер, с нужным нам видео
+            player = new YT.Player('ytplayer', {
+                videoId: vidID,
+                events: {
+                      'onReady': showWait
+                }
+            });
+        }
+
+// ------------------------EVENTS-------------------------
+//
+// --- Open SVG image
+        el = document.getElementById('opensvg');
+        el.addEventListener('transitionend', () => { el.style.display = "none"; el.style.opacity = 1; showWait();}, false);
+        el.style.opacity = 1;
+
+// --- Press Play Here banner
+        el = document.getElementById('banner');
+        el.addEventListener('animationend', () =>  { el.classList.remove('fadeinout'); }, false);
+        el.addEventListener('transitionend', () => { el.classList.remove('fadeinout'); }, false);
+
+// --- Wait banner
+        el = document.getElementById('wait');
+        el.addEventListener('animationend', () =>  { el.classList.remove('fadeinout'); }, false);
+        el.addEventListener('transitionend', () => { el.classList.remove('fadeinout'); }, false);
+
+//----------------------------------------------------------
+
+        function getVolume() {
+            return player.getVolume();
+        }
+
+        function setVolume(x)
+        {
+            player.setVolume(x);
+        }
+
+        function showBanner() {
+            el = document.getElementById('banner');
+            el.classList.add('fadeinout');
+        }
+
+        function showWait() {
+            el = document.getElementById('wait');
+            el.classList.add('fadeinout');
+        }
+
+        function prepVideo(vidID) {
+            if(!player) {
+                ytPlayer(vidID);
+                el = document.getElementById('opensvg');
+                el.style.opacity = 0;
+                player.addEventListener('onReady', showBanner);
+            }
+            //else showBanner();
+        }
+
+
+        function playFullscreen (){
+            el = document.getElementById('opensvg');
+            el.style.display = "none";
+            player.playVideo();
+            el = document.getElementById('ytplayer');
+            var requestFullScreen = el.requestFullScreen || el.mozRequestFullScreen || el.webkitRequestFullScreen;
+            if (requestFullScreen) {
+                requestFullScreen.bind(el)();
+            }
+        }
+        function stopVideo(){
+            player.stopVideo();
+            el = document.getElementById('opensvg');
+            el.style.display = "block";
+            el.style.opacity = 1;
+
+            player.clearVideo();
+        }
+
+
+
+
+    </script>
+    </body>
+
+</html>

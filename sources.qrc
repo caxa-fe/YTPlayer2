@@ -1,0 +1,30 @@
+<RCC>
+    <qresource prefix="/images">
+        <file>pics/pic0.png</file>
+        <file>pics/pic1.png</file>
+        <file>pics/pic2.png</file>
+        <file>pics/pic3.png</file>
+        <file>pics/pic4.png</file>
+        <file>pics/pic5.png</file>
+        <file>pics/pic6.png</file>
+        <file>pics/pic7.png</file>
+        <file>pics/pic8.png</file>
+        <file>pics/pic9.png</file>
+        <file>pics/open.svg</file>
+        <file>pics/stop.svg</file>
+    </qresource>
+    <qresource prefix="/html">
+        <file>playlist/index.html</file>
+        <file>playlist/stop.html</file>
+        <file>playlist/video_0.html</file>
+        <file>playlist/video_1.html</file>
+        <file>playlist/video_2.html</file>
+        <file>playlist/video_3.html</file>
+        <file>playlist/video_4.html</file>
+        <file>playlist/video_5.html</file>
+        <file>playlist/video_6.html</file>
+        <file>playlist/video_7.html</file>
+        <file>playlist/video_8.html</file>
+        <file>playlist/video_9.html</file>
+    </qresource>
+</RCC>

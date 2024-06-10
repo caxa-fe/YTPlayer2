@@ -1,0 +1,48 @@
+<RCC>
+    <qresource prefix="/html">
+        <file>playlist/index.html</file>
+        <file>playlist/stop.html</file>
+        <file>playlist/video_0.html</file>
+        <file>playlist/video_1.html</file>
+        <file>playlist/video_2.html</file>
+        <file>playlist/video_3.html</file>
+        <file>playlist/video_4.html</file>
+        <file>playlist/video_5.html</file>
+        <file>playlist/video_6.html</file>
+        <file>playlist/video_7.html</file>
+        <file>playlist/video_8.html</file>
+        <file>playlist/video_9.html</file>
+        <file>playlist/player.html</file>
+        <file>playlist/playlist.txt</file>
+    </qresource>
+    <qresource prefix="/imgs">
+        <file>pics/open.svg</file>
+        <file>pics/pic0.png</file>
+        <file>pics/pic1.png</file>
+        <file>pics/pic2.png</file>
+        <file>pics/pic3.png</file>
+        <file>pics/pic4.png</file>
+        <file>pics/pic5.png</file>
+        <file>pics/pic6.png</file>
+        <file>pics/pic7.png</file>
+        <file>pics/pic8.png</file>
+        <file>pics/pic9.png</file>
+        <file>pics/stop.svg</file>
+        <file>pics/fullsc.svg</file>
+        <file>pics/pause.svg</file>
+        <file>pics/play.svg</file>
+        <file>pics/minus.svg</file>
+        <file>pics/plus.svg</file>
+        <file>pics/soundoff.svg</file>
+        <file>pics/soundon.svg</file>
+        <file>pics/vol_0.svg</file>
+        <file>pics/vol_1.svg</file>
+        <file>pics/vol_2.svg</file>
+        <file>pics/vol_3.svg</file>
+        <file>pics/vol_4.svg</file>
+        <file>pics/vol_5.svg</file>
+        <file>pics/vol_6.svg</file>
+        <file>pics/vol_7.svg</file>
+        <file>pics/vol_8.svg</file>
+    </qresource>
+</RCC>

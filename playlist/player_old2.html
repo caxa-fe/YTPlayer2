@@ -1,0 +1,113 @@
+<!doctype html>
+<!-- Мосфильм "Покровские ворота - 2 серия" -->
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <style type="text/css">
+            #ytplayer {
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+
+            }
+            #btnHide {
+                position: absolute;
+                top: 0;
+                left: 0;
+                display: none;
+            }
+            #btnFullScreen {
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                display: none;
+            }
+            #opensvg {
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background-color: #333;
+                display: block;
+                visibility: visible;
+                opacity: 1;
+                transition-property: opacity;
+                transition-duration: 1s;
+            }
+
+            img {
+                display: block;
+                margin-left: auto;
+                margin-right: auto;
+                width: 100%;
+                height: 100%;
+            }
+        </style>
+    </head>
+    <body>
+        <!-- 1. The <iframe> (and video player) will replace this <div> tag. -->
+    <div id="ytplayer"></div>
+    <script src = "https://www.youtube.com/iframe_api"></script>
+    <script>
+        if (!player) {
+          var tag = document.createElement('script');
+
+          tag.src = "https://www.youtube.com/iframe_api";
+          var firstScriptTag = document.getElementsByTagName('script')[0];
+          firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+          var player;
+          function onYouTubeIframeAPIReady() {
+            player = new YT.Player('ytplayer', {
+                //videoId: 'PhxPonIglPc',
+                //playerVars: { 'autoplay': 1, 'controls': 1 },
+                //events: {
+                //  'onReady': onPlayerReady
+                //}
+              });
+            }
+        }
+
+
+    </script>
+    <div id='opensvg'>
+            <img src = "../../imgs/pics/open.svg">
+            <!-- <img  src = "../pics/open.svg"> -->
+    </div>
+    <!-- Эти кнопки оставлены для отладки -->
+    <button id="btnHide"  onclick="toggleDivVisibility()">Hide</button>
+    <button id="btnFullScreen" onclick="playFullscreen()">FullScreen</button>
+
+    <script>
+        el = document.getElementById('opensvg');
+        el.addEventListener('transitionend', playFullscreen, false);
+        el.style.opacity = 1;
+
+        function toggleDivVisibility() {
+
+          el = document.getElementById('opensvg');
+          el.style.opacity = el.style.opacity === '1' ? '0' : '1';
+        }
+
+        function playFullscreen (){
+            el = document.getElementById('opensvg');
+            el.style.display = "none";
+            player.playVideo();
+            el = document.getElementById('ytplayer');
+            var requestFullScreen = el.requestFullScreen || el.mozRequestFullScreen || el.webkitRequestFullScreen;
+            if (requestFullScreen) {
+                requestFullScreen.bind(el)();
+            }
+        }
+        function stopVideo (){
+            el = document.getElementById('opensvg');
+            el.style.display = "block";
+            el.style.opacity = 1;
+        }
+    </script>
+    </body>
+
+</html>
